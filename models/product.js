@@ -8,5 +8,5 @@ const ProductSchema = new mongoose.Schema({
   itemPictures: { pic1: String, pic2: String },
 });
 //              first String is Name of the collection in database
-const ProductModel = mongoose.model("books", ProductSchema);
+const ProductModel = mongoose.model("Product", ProductSchema);
 export default ProductModel;
