@@ -1,0 +1,16 @@
+.title {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 118px;
+    color: #1F8B85;
+    text-align: center;
+}
+.home {
+    color : #000000;
+}
+
+.button {
+        background-color: #e7e7e7; color: black;
+    } /* Gray */

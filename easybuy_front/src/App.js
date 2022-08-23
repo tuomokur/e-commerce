@@ -1,13 +1,7 @@
-import './App.css';
+import "./App.css";
+import Routes from "./routes/Routes";
 
 function App() {
-  return (
-    <div className="App">
-      <h1>
-        Hi everyone! This is our great EasyBuy App :)
-      </h1>
-    </div>
-  );
+  return <Routes />;
 }
-
 export default App;
