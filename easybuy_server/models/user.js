@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 const userSchema = new mongoose.Schema({
-  id: String,
   firstName: String,
   lastName: String,
   streetAddress: String,
@@ -8,6 +7,7 @@ const userSchema = new mongoose.Schema({
   phone: String,
   userName: String,
   password: String,
+  email: String
 });
 //              first   String is Name of the collection in database
 const UserModel = mongoose.model("users", userSchema);

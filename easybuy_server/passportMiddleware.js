@@ -1,6 +1,7 @@
 import passport from "passport";
 import { ExtractJwt, Strategy } from "passport-jwt";
 import dotenv from "dotenv";
+import UserModel from "./models/user.js";
 
 dotenv.config();
 
@@ -14,8 +15,14 @@ passport.use(new Strategy(options, async (payload, done) => {
     if (!type || type !== "session") {
         return done(null, null);
     }
-    if (username !== process.env.CORRECT_USERNAME) return done(null, null);
-    return done(null, {username});
+    try {
+        const userData = await UserModel.findOne({ userName: username });
+        if (!userData) return done(null, null);
+        return done(null, {username});
+    } catch (e) {
+        console.log("passport strategy: ", e);
+        return done(e, null)
+    }
 }));
 
 export default passport.authenticate("jwt", {session: false});
