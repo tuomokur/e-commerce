@@ -1,9 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import UserRouter from "./routes/UserRouter.js";
 import ProductRouter from "./routes/ProductRouter.js";
-
+import UserRouter from "./routes/UserRouter.js";
 
 dotenv.config();
 
@@ -29,6 +28,7 @@ await connectMongoose();
 
 app.use("/user", UserRouter);
 app.use("/product", ProductRouter);
+
 
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);

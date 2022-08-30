@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+
 const ProductSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -16,6 +17,6 @@ const ProductSchema = new mongoose.Schema({
     },
   },
 });
-//              first String is Name of the collection in database
+//  first String is Name of the collection in database
 const ProductModel = mongoose.model("Product", ProductSchema);
 export default ProductModel;
