@@ -15,9 +15,9 @@ import auth from "../passportMiddleware.js";
 const router = express.Router();
 
 router.get("/", getProduct);
-router.get("/", getAllProducts);
+router.get("/products", getAllProducts);
 router.post("/", auth, addProduct);
 router.put("/", auth, updateProduct);
-router.delete("/", auth, deleteProduct);
+router.delete("/:id", deleteProduct);
 
 export default router;
