@@ -13,7 +13,7 @@ export const addUser = async (req, res) => {
     if (checkUsername === null) {
         const saltRounds = 10;
         const passwdhash = await bcrypt.hash(savedUser.password, saltRounds);
-        savedUser.password = passwdhash
+        savedUser.password = passwdhash;
 
         const user = await UserModel.create(savedUser);
         res.status(200).send(`New user: ${savedUser.firstName} ${savedUser.lastName} was saved to database`)
