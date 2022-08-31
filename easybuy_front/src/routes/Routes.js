@@ -5,6 +5,7 @@ import Login from "./Login";
 import Register from "./Register";
 import Category from "./Category";
 import HeaderBar from "./components/HeaderBar";
+import Footer from "./components/Footer.js";
 
 const AppRoutes = () => {
   return (
@@ -17,6 +18,7 @@ const AppRoutes = () => {
           <Route path="/category" element={<Category />} />
           <Route path="/" element={<Home />} />
         </Routes>
+        <Footer />
       </Router>
     </ChakraProvider>
   );
