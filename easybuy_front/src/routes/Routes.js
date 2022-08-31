@@ -6,6 +6,7 @@ import Category from "./Category";
 import HeaderBar from "./components/HeaderBar";
 import AuthProvider from "../contexts/authContext";
 import ProductProvider from "../contexts/productContext";
+import Footer from "./components/Footer.js";
 
 const AppRoutes = () => {
   return (
@@ -19,6 +20,7 @@ const AppRoutes = () => {
             <Route path="/category" element={<Category />} />
             <Route path="/" element={<Home />} />
           </Routes>
+          <Footer />
         </ProductProvider>
       </AuthProvider>
     </Router>
