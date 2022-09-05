@@ -12,6 +12,7 @@ import {
 const Logout = () => {
     const { logout } = useAuthContext();
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const { logout } = useAuthContext();
     return (
     <>
         <Button onClick={onOpen} variant={"outline"} fontSize={"sm"} color={"black"} bg={"white.400"}_hover={{ bg: "gray.300",}}>
