@@ -15,16 +15,14 @@ export const getAllCategories = async (req, res) => {
 
 export const addCategory = async (req, res) => {
   const dataToSave = req.body;
-  if (!dataToSave) {
-    res.status(400).send({ message: "Data can not be empty!" });
-  } else if (typeof dataToSave.name !== "string") {
-    res.status(400).send({ message: "name should be in string format" });
-  } else if (typeof dataToSave.description !== "string") {
-    res.status(400).send({ message: "description should be in string fromat" });
-  } else if (typeof dataToSave.date.getMonth !== "function") {
-    res.status(400).send({ message: "date should be in ISO format" });
-  } else if (typeof dataToSave.pictures !== "array") {
-    res.status(400).send({ message: "pictures should be in array format" });
+  if (
+    !dataToSave ||
+    typeof dataToSave.name !== "string" ||
+    typeof dataToSave.description !== "string" ||
+    typeof dataToSave.date !== "string" ||
+    typeof dataToSave.pictures !== "array"
+  ) {
+    res.status(400).send({ message: "Data is not correct format" });
   } else {
     try {
       const newCategory = new CategoryModel(dataToSave);
