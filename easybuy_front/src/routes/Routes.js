@@ -7,21 +7,23 @@ import HeaderBar from "./components/HeaderBar";
 import AuthProvider from "../contexts/authContext";
 import ProductProvider from "../contexts/productContext";
 import Footer from "./components/Footer.js";
-
+import CategoryProvider from "../contexts/categoryContext";
 const AppRoutes = () => {
   return (
     <Router>
       <AuthProvider>
-        <ProductProvider>
-          <HeaderBar />
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/category" element={<Category />} />
-            <Route path="/" element={<Home />} />
-          </Routes>
-          <Footer />
-        </ProductProvider>
+        <CategoryProvider>
+          <ProductProvider>
+            <HeaderBar />
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/category" element={<Category />} />
+              <Route path="/" element={<Home />} />
+            </Routes>
+            <Footer />
+          </ProductProvider>
+        </CategoryProvider>
       </AuthProvider>
     </Router>
   );
