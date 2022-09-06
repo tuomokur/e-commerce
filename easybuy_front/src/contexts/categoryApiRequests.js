@@ -6,11 +6,6 @@ export const addCategory = async (newcategory) => {
   return response.data;
 };
 
-export const updateCategory = async (id, categoryData) => {
-  const response = await axios.put(`${url}/:id`, categoryData);
-  return response.data;
-};
-
 export const getCategory = async (id) => {
   const response = await axios.get(`${url}`, id);
   return response.data;
@@ -18,10 +13,5 @@ export const getCategory = async (id) => {
 
 export const getCategories = async () => {
   const response = await axios.get(`${url}`);
-  return response.data;
-};
-
-export const deleteCategory = async (id) => {
-  const response = await axios.delete(`${url}`, id);
   return response.data;
 };
