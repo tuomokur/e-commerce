@@ -2,7 +2,10 @@ import React from "react";
 import { Box, Stack, Button, Flex, Spacer } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { Text } from "@chakra-ui/react";
+import { useAuthContext } from "../../contexts/authContext";
 const HeaderBar = () => {
+  const { isLoggedIn } = useAuthContext();
+
   return (
     <Box>
       <Flex
@@ -33,7 +36,7 @@ const HeaderBar = () => {
         </Box>
         <Spacer />
         <Stack justifyContent={"flex-end"} direction={"row"} spacing={6}>
-          <Link to={false ? "/logout" : "/login"}>
+          <Link to={isLoggedIn ? "/logout" : "/login"}>
             <Button
               variant={"outline"}
               fontSize={"sm"}
@@ -43,10 +46,10 @@ const HeaderBar = () => {
                 bg: "gray.300",
               }}
             >
-              {false ? "Logout" : "Login"}
+              {isLoggedIn ? "Logout" : "Login"}
             </Button>
           </Link>
-          {false ? (
+          {!isLoggedIn ? (
             <Link to="/register">
               <Button
                 variant={"outline"}
@@ -57,7 +60,22 @@ const HeaderBar = () => {
                   bg: "gray.300",
                 }}
               >
-                "Register"
+                Register
+              </Button>
+            </Link>
+          ) : null}
+          {isLoggedIn ? (
+            <Link to="/settings">
+              <Button
+                variant={"outline"}
+                fontSize={"sm"}
+                color={"black"}
+                bg={"white.400"}
+                _hover={{
+                  bg: "gray.300",
+                }}
+              >
+                Settings
               </Button>
             </Link>
           ) : null}
