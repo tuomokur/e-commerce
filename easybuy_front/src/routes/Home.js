@@ -1,7 +1,11 @@
+import LandingImage from "./components/LandingImage.js";
+import RecentItems from "./components/RecentItems.js";
+
 const Home = () => {
   return (
-    <div>
-      <h1>Okay this will be the home page</h1>
+    <div className="main-container">
+      <LandingImage />
+      {/* <RecentItems /> */}
     </div>);
 };
 export default Home;
