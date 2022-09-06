@@ -1,8 +1,20 @@
+import {
+    Slider, 
+    SliderTrack,
+    SliderFilledTrack,
+    SliderThumb,
+    SliderMark,
+} from "@chakra-ui/react";
+
+
 const RecentItems = () => {
     return(
-        <div>
-            <h1>Recent post will go here</h1>
-        </div>
+        <Slider aria-label='slider-ex-1' defaultValue={30}>
+          <SliderTrack>
+            <SliderFilledTrack />
+          </SliderTrack>
+          <SliderThumb />
+        </Slider>
     );
 }
 

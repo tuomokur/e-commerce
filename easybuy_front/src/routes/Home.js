@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div className="main-container">
       <LandingImage />
-      <RecentItems />
+      {/* <RecentItems /> */}
     </div>);
 };
 export default Home;
