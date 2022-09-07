@@ -8,7 +8,7 @@ import AuthProvider from "../contexts/authContext";
 import ProductProvider from "../contexts/productContext";
 import Footer from "./components/Footer.js";
 import CategoryProvider from "../contexts/categoryContext";
-import Settings from "./Settings";
+
 const AppRoutes = () => {
   return (
     <Router>
@@ -20,7 +20,7 @@ const AppRoutes = () => {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/category" element={<Category />} />
-              <Route Path="/settings" element={<Settings />} />
+              <Route path="/settings" />
               <Route path="/" element={<Home />} />
             </Routes>
             <Footer />
