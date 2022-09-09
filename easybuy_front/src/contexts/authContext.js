@@ -8,6 +8,7 @@ import {
 } from "./apiRequests";
 import { useNavigate } from "react-router-dom";
 
+
 const AuthContext = createContext(undefined);
 
 const AuthProvider = (props) => {
