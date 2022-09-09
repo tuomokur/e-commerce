@@ -68,8 +68,7 @@ const HeaderBar = () => {
           ) : null}
           {isLoggedIn ? (
             <Link to="/settings">
-              {" "}
-              <Settings />{" "}
+              <Settings />
             </Link>
           ) : null}
         </Stack>
