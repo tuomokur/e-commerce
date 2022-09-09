@@ -1,7 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Home";
-import Login from "./Login";
-import Register from "./Register";
 import Category from "./Category";
 import HeaderBar from "./components/HeaderBar";
 import AuthProvider from "../contexts/authContext";
@@ -17,8 +15,8 @@ const AppRoutes = () => {
           <ProductProvider>
             <HeaderBar />
             <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
+              <Route path="/login"/>
+              <Route path="/register" />
               <Route path="/category" element={<Category />} />
               <Route path="/settings" />
               <Route path="/" element={<Home />} />

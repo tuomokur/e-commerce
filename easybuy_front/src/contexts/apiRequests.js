@@ -7,10 +7,10 @@ export const addUser = async (newUser) => {
     return response.data;
 };
 
-export const tryLogin = async (username, password) => {
+export const tryLogin = async (userName, password) => {
     const response = await axios.post(`${url}/login/`,
         {
-            username,
+            userName,
             password
         });
     return response.data;
