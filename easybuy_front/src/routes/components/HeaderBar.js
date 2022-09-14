@@ -66,7 +66,7 @@ const HeaderBar = () => {
               </Button>
             </Link>
           ) : null}
-          {isLoggedIn ? (
+          {true ? (
             <Link to="/settings">
               <Settings />
             </Link>

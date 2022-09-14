@@ -11,7 +11,10 @@ const CategoryProvider = (props) => {
       if (categories.length === 0) {
         try {
           const dbcategories = await getCategories();
-          setcategories(dbcategories.data);
+          // check to avoid infinite looping
+          if (dbcategories.length > 0) {
+            setcategories(dbcategories);
+          }
         } catch (error) {
           console.error(error);
         }

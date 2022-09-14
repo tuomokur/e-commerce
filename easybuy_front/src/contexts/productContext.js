@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import {
   getProducts,
   addProduct,
@@ -10,6 +10,7 @@ export const ProductContext = createContext({});
 
 const ProductProvider = (props) => {
   const [products, setProducts] = useState([]);
+  const [searchedProducts, setSearchedProducts] = useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -17,6 +18,7 @@ const ProductProvider = (props) => {
       if (products.length === 0) {
         try {
           const dbproducts = await getProducts();
+
           // check to avoid infinite looping
           if (dbproducts.length > 0) {
             setProducts(dbproducts);
@@ -87,11 +89,19 @@ const ProductProvider = (props) => {
         addProduct: doAddProduct,
         editProduct,
         deleteProduct: doDeleteProduct,
+        searchedProducts,
+        setSearchedProducts,
       }}
     >
       {props.children}
     </ProductContext.Provider>
   );
+};
+export const useProductContext = () => {
+  const context = useContext(ProductContext);
+  if (!context)
+    throw new Error("ProductContext must be used within its provider");
+  return context;
 };
 
 export default ProductProvider;

@@ -19,7 +19,7 @@ import {
   Tooltip,
 } from "@chakra-ui/react";
 
-  const Settings = () => {
+const Settings = () => {
   const { modifyUserData } = useAuthContext();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [show, setShow] = React.useState(false);
@@ -28,7 +28,7 @@ import {
 
   const [user, setUser] = useState({
     firstName: "",
-    lastName: "", 
+    lastName: "",
     streetAddress: "",
     postNumber: "",
     phone: "",
@@ -36,6 +36,11 @@ import {
     password: "",
     email: "",
   });
+
+  const handleOnClose = () => {
+    onClose();
+    navigate("/");
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -62,7 +67,7 @@ import {
       >
         Settings
       </Button>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={handleOnClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Settings a new user account</ModalHeader>
@@ -184,6 +189,6 @@ import {
       </Modal>
     </>
   );
-}
+};
 
 export default Settings;

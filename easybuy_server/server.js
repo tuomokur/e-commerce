@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import ProductRouter from "./routes/ProductRouter.js";
 import UserRouter from "./routes/UserRouter.js";
+import CategoryRouter from "./routes/CategoryRouter.js";
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ await connectMongoose();
 
 app.use("/user", UserRouter);
 app.use("/product", ProductRouter);
+app.use("/category", CategoryRouter);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
