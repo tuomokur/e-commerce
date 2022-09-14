@@ -1,5 +1,4 @@
 import {
-  ChakraProvider,
   Box,
   Text,
   ListItem,

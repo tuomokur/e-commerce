@@ -1,12 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import {
-  Input,
-  InputGroup,
-  InputRightElement,
-  Button,
-  Box,
-} from "@chakra-ui/react";
+import { Input, InputGroup, InputRightElement, Box } from "@chakra-ui/react";
+import { SearchIcon } from "@chakra-ui/icons";
 import { useProductContext } from "../../contexts/productContext";
 import { getProducts } from "../../contexts/productApiRequests";
 
@@ -21,9 +16,7 @@ function debounce(func, timeout = 300) {
 }
 
 const SearchBar = () => {
-  const [show, setShow] = React.useState(false);
   const [isInvalid, setIsInvalid] = React.useState(false);
-  const handleClick = () => setShow(!show);
   const [search, setSearch] = useState("");
   const { searchedProducts, setSearchedProducts } = useProductContext();
 
@@ -48,20 +41,19 @@ const SearchBar = () => {
   };
 
   const productsAvailable = searchedProducts.length > 0;
+
   return (
-    <Box m={2} p={4}>
+    <Box m={2} p={4} w="100%">
       <InputGroup size="md">
         <Input
           pr="4.5rem"
           onChange={onChange}
-          type={show ? "text" : "Search"}
+          type={"Search"}
           placeholder="Search"
           value={search}
         />
         <InputRightElement width="4.5rem">
-          <Button h="1.75rem" size="sm" onClick={handleClick}>
-            {show ? "Hide" : "Show"}
-          </Button>
+          <SearchIcon />
         </InputRightElement>
         {productsAvailable ? <p>No search results to display</p> : null}
         {isInvalid ? <p>Unable to get search results</p> : null}
