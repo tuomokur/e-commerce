@@ -16,8 +16,8 @@ export const getProduct = async (id) => {
   return response.data;
 };
 
-export const getProducts = async () => {
-  const response = await axios.get(`${url}`);
+export const getProducts = async (search) => {
+  const response = await axios.get(`${url}`, { params: { search: search } });
   return response.data;
 };
 

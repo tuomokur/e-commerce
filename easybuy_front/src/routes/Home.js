@@ -1,11 +1,18 @@
 import LandingImage from "./components/LandingImage.js";
 import RecentItems from "./components/RecentItems.js";
+import SearchBar from "./components/SearchBar.js";
+import { Flex, Spacer } from "@chakra-ui/react";
 
 const Home = () => {
   return (
     <div className="main-container">
-      <LandingImage />
-      {/* <RecentItems /> */}
-    </div>);
+      <Flex>
+        <LandingImage />
+        <Spacer />
+        <SearchBar />
+        {/* <RecentItems /> */}
+      </Flex>
+    </div>
+  );
 };
 export default Home;
