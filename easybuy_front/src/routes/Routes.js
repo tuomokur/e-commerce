@@ -6,6 +6,7 @@ import AuthProvider from "../contexts/authContext";
 import ProductProvider from "../contexts/productContext";
 import Footer from "./components/Footer.js";
 import CategoryProvider from "../contexts/categoryContext";
+import ProductPage from "./ProductPage";
 
 const AppRoutes = () => {
   return (
@@ -18,6 +19,7 @@ const AppRoutes = () => {
               <Route path="/login"/>
               <Route path="/register" />
               <Route path="/category" element={<Category />} />
+              <Route path="/product" element={<ProductPage />} />
               <Route path="/settings" />
               <Route path="/" element={<Home />} />
             </Routes>
