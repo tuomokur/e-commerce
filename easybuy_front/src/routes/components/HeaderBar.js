@@ -1,9 +1,12 @@
 import React from "react";
-import { Box, Stack, Button, Flex, Spacer } from "@chakra-ui/react";
+import { Box, Stack, Flex, Spacer } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { Text } from "@chakra-ui/react";
 import { useAuthContext } from "../../contexts/authContext";
 import Settings from "../Settings.js";
+import LoginModal from "./LoginModal";
+import RegisterModal from "./RegisterModal";
+import LogoutModal from "./LogoutModal.js";
 
 const HeaderBar = () => {
   const { isLoggedIn } = useAuthContext();
@@ -38,39 +41,10 @@ const HeaderBar = () => {
         </Box>
         <Spacer />
         <Stack justifyContent={"flex-end"} direction={"row"} spacing={6}>
-          <Link to={isLoggedIn ? "/logout" : "/login"}>
-            <Button
-              variant={"outline"}
-              fontSize={"sm"}
-              color={"black"}
-              bg={"white.400"}
-              _hover={{
-                bg: "gray.300",
-              }}
-            >
-              {isLoggedIn ? "Logout" : "Login"}
-            </Button>
-          </Link>
-          {!isLoggedIn ? (
-            <Link to="/register">
-              <Button
-                variant={"outline"}
-                fontSize={"sm"}
-                color={"black"}
-                bg={"white.400"}
-                _hover={{
-                  bg: "gray.300",
-                }}
-              >
-                Register
-              </Button>
-            </Link>
-          ) : null}
-          {true ? (
-            <Link to="/settings">
-              <Settings />
-            </Link>
-          ) : null}
+          {!isLoggedIn ? <LoginModal /> : null}
+          {!isLoggedIn ? <RegisterModal /> : null}
+          {isLoggedIn ? <Settings /> : null}
+          {isLoggedIn ? <LogoutModal /> : null}
         </Stack>
       </Flex>
     </Box>
