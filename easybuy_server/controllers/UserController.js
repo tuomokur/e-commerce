@@ -8,7 +8,7 @@ dotenv.config();
 
 export const addUser = async (req, res) => {
     const savedUser = req.body;    
-    const checkUsername = await UserModel.findOne({ userName: savedUser.userName });  
+    const checkUsername = await UserModel.findOne({ username: savedUser.username });  
 
     if (checkUsername === null) {
         const saltRounds = 10;
@@ -22,18 +22,18 @@ export const addUser = async (req, res) => {
     }
 };
 export const loginUser = async (req, res) => {
-    const { userName, password } = req.body;
+    const { username, password } = req.body;
 
-    if (!userName || !password) {
+    if (!username || !password) {
         return res.status(400).send("username or password missing");
     }
     try {
-        const userData = await UserModel.findOne({ userName: userName });
+        const userData = await UserModel.findOne({ username: username });
         const valid = await bcrypt.compare(password, userData.password);      
 
         if (valid) {
             const token = jsonwebtoken.sign(
-                { type: "session", username: userName },
+                { type: "session", username: username },
                 process.env.JWT_SECRET,
                 { expiresIn: "1h" }
             );
@@ -58,7 +58,7 @@ export const refreshToken = (req, res) => {
 export const modifyUser = async (req, res) => {
     const update = { ...req.body };
     try {
-        const userUpdate = await UserModel.findOneAndUpdate({ userName: req.user.username  }, update);        
+        const userUpdate = await UserModel.findOneAndUpdate({ username: req.user.username  }, update);        
         res.status(200).send("User data was modified successfully")
     } catch (e) {
         console.log("updated user   : ", e);

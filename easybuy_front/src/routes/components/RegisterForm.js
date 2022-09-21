@@ -20,7 +20,7 @@ const RegisterForm = () => {
     const handleClick = () => setShow(!show);
 
     const [user, setUser] = useState({
-        userName: '',
+        username: '',
         password: '',
         firstName: '',
         lastName: '',
@@ -48,7 +48,7 @@ const RegisterForm = () => {
         <form onSubmit={handleSubmit}>
             <FormControl isRequired >
                 <FormLabel  mt={4} mb={0}>Username</FormLabel>
-                <Input  type='text' onChange={(e) => setUser({...user, userName:(e.target.value)})} minLength="4" maxLength="40" />
+                <Input  type='text' onChange={(e) => setUser({...user, username:(e.target.value)})} minLength="4" maxLength="40" />
                 
                 <FormLabel mt={4} mb={0}>Password</FormLabel>
                 <InputGroup size='md'>

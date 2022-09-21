@@ -1,4 +1,4 @@
-import CategoryModel from "../models/Category.js";
+import CategoryModel from "../models/category.js";
 
 export const getCategory = async (req, res) => {
   res.send("Here will be particular Category");
