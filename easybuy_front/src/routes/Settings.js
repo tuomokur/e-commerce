@@ -32,7 +32,7 @@ const Settings = () => {
     streetAddress: "",
     postNumber: "",
     phone: "",
-    userName: "",
+    username: "",
     password: "",
     email: "",
   });
@@ -133,7 +133,7 @@ const Settings = () => {
                 <Input
                   type="text"
                   onChange={(e) =>
-                    setUser({ ...user, userName: e.target.value })
+                    setUser({ ...user, username: e.target.value })
                   }
                   minLength="4"
                   maxLength="40"
@@ -165,7 +165,7 @@ const Settings = () => {
                 <Input
                   type="text"
                   onChange={(e) =>
-                    setUser({ ...user, userName: e.target.value })
+                    setUser({ ...user, username: e.target.value })
                   }
                 />
 
