@@ -5,17 +5,25 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const options = {
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: process.env.JWT_SECRET || ""
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: process.env.JWT_SECRET || "",
 };
 
-passport.use(new Strategy(options, async (payload, done) => {
+passport.use(
+  new Strategy(options, async (payload, done) => {
     const { type, username } = payload;
     if (!type || type !== "session") {
-        return done(null, null);
+      return done(null, null);
     }
-    if (username !== process.env.CORRECT_USERNAME) return done(null, null);
-    return done(null, {username});
-}));
+    try {
+      const userData = await UserModel.findOne({ userName: username });
+      if (!userData) return done(null, null);
+      return done(null, { username, _id: userData._id });
+    } catch (e) {
+      console.log("passport strategy: ", e);
+      return done(e, null);
+    }
+  })
+);
 
-export default passport.authenticate("jwt", {session: false});
+export default passport.authenticate("jwt", { session: false });
