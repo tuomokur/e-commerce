@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Stack, Button, Flex, Spacer } from "@chakra-ui/react";
+import { Box, Stack, Flex, Spacer } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { Text } from "@chakra-ui/react";
 import { useAuthContext } from "../../contexts/authContext";
