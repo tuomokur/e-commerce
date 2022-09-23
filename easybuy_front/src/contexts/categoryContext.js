@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 import { getCategories, addCategory } from "./categoryApiRequests.js";
 
 export const CategoryContext = createContext({});
@@ -51,5 +51,10 @@ const CategoryProvider = (props) => {
     </CategoryContext.Provider>
   );
 };
-
+export const useCategoryContext = () => {
+  const context = useContext(CategoryContext);
+  if (!context)
+    throw new Error("CategoryContext must be used with its provider");
+  return context;
+};
 export default CategoryProvider;

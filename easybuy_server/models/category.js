@@ -14,5 +14,5 @@ const CategorySchema = new mongoose.Schema({
   },
 });
 //  first String is Name of the collection in database
-const CategoryModel = mongoose.model("Category", CategorySchema);
+const CategoryModel = mongoose.model("category", CategorySchema);
 export default CategoryModel;

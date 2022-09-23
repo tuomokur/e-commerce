@@ -1,3 +1,4 @@
+import CategoryModel from "../models/Category.js";
 import ProductModel from "../models/product.js";
 
 export const getProduct = async (req, res) => {
@@ -29,17 +30,33 @@ export const getAllProducts = async (req, res) => {
 
 export const addProduct = async (req, res) => {
   const dataToSave = req.body;
-  if (!dataToSave) {
+  if (
+    !dataToSave ||
+    typeof dataToSave.itemName != "string" ||
+    typeof dataToSave.itemDescription != "string" ||
+    typeof dataToSave.itemPrice != "number" ||
+    typeof dataToSave.categoryName != "string"
+  ) {
     res.status(400).send({ message: "Data can not be empty!" });
-  } else if (typeof dataToSave.itemName != "string") {
-    res.status(400).send({ message: "Item name should be in string format" });
-  } else if (typeof dataToSave.itemPrice != "number") {
-    res.status(400).send({ message: "Item price should be a number" });
   } else {
     try {
-      const newProduct = new ProductModel(dataToSave);
-      const savedProduct = await newProduct.save();
-      res.json(savedProduct);
+      const category = await CategoryModel.findOne({
+        name: dataToSave.categoryName,
+      });
+      if (category) {
+        const productToBeSave = {
+          itemName: dataToSave.itemName,
+          itemDescription: dataToSave.itemDescription,
+          itemPrice: dataToSave.itemPrice,
+          categoryId: category._id,
+          userId: req.user._id,
+        };
+        const newProduct = new ProductModel(productToBeSave);
+        const savedProduct = await newProduct.save();
+        res.json(savedProduct);
+      } else {
+        res.status(404).json({ message: "category not found" });
+      }
     } catch (e) {
       res.status(400).json({ message: "error in data format" });
     }
