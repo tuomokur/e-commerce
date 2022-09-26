@@ -19,6 +19,7 @@
   "homepage": "https://gitlab.com/js-training1/projects/final-project#readme",
   "dependencies": {
     "express-validator": "^6.14.2",
+    "feather-icons": "^4.29.0",
     "react-router-dom": "^6.3.0"
   }
 }
