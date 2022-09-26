@@ -1,21 +1,14 @@
-import {
-    Slider, 
-    SliderTrack,
-    SliderFilledTrack,
-    SliderThumb,
-    SliderMark,
-} from "@chakra-ui/react";
+import React, { useContext } from "react";
+import { Box } from "@chakra-ui/react";
+import ProductCard from "./ProductCard";
 
-
-const RecentItems = () => {
-    return(
-        <Slider aria-label='slider-ex-1' defaultValue={30}>
-          <SliderTrack>
-            <SliderFilledTrack />
-          </SliderTrack>
-          <SliderThumb />
-        </Slider>
+  const RecentItems = () => {
+    return (
+        <Box>
+            <ProductCard />
+        </Box>        
     );
-}
+  }
 
-export default RecentItems;
+  export default RecentItems;
+  
