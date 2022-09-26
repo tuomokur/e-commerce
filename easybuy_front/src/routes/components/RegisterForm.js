@@ -1,4 +1,5 @@
 import React from "react";
+import InputComponent from "./InputComponent.js";
 import { addUser} from "../../contexts/apiRequests.js";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -49,7 +50,7 @@ const RegisterForm = () => {
             <FormControl isRequired >
                 <FormLabel  mt={4} mb={0}>Username</FormLabel>
                 <Input  type='text' onChange={(e) => setUser({...user, username:(e.target.value)})} minLength="4" maxLength="40" />
-                
+
                 <FormLabel mt={4} mb={0}>Password</FormLabel>
                 <InputGroup size='md'>
                     <Tooltip label="Your password should be minimum of 8 characters long and have at least one capital and lower case letter, a number and a special character ( @$!%*? ). " >
@@ -70,22 +71,22 @@ const RegisterForm = () => {
                 </InputGroup>
 
                 <FormLabel mt={4} mb={0}>First name</FormLabel>
-                <Input  type='text' onChange={(e) => setUser({...user, firstName:(e.target.value)})}/>
+                <InputComponent type="text" user={user} userKey={"firstName"} setUser={setUser} value={user.firstName} />
 
                 <FormLabel mt={4} mb={0}>Last name</FormLabel>
-                <Input type='text' onChange={(e) => setUser({...user, lastName:(e.target.value)})}/>
+                <InputComponent type="text" user={user} userKey={"lastName"} setUser={setUser} value={user.lastName} />
 
                 <FormLabel mt={4} mb={0}>Street address</FormLabel>
-                <Input type='text' onChange={(e) => setUser({...user, streetAddress:(e.target.value)})} />
+                <InputComponent type="text" user={user} userKey={"streetAddress"} setUser={setUser} value={user.streetAddress} />
 
                 <FormLabel mt={4} mb={0}>Post number</FormLabel>
-                <Input type='number' onChange={(e) => setUser({...user, postNumber:(e.target.value)})}/>
+                <InputComponent type="number" user={user} userKey={"postNumber"} setUser={setUser} value={user.postNumber} />
 
                 <FormLabel mt={4} mb={0}>Phone number</FormLabel>
-                <Input type='tel' onChange={(e) => setUser({...user, phoneNumber:(e.target.value)})}placeholder=' +358401234568' />
+                <InputComponent type="tel" placeholder=" +358401234568" user={user} userKey={"phoneNumber"} setUser={setUser} value={user.phoneNumber} />
                 
                 <FormLabel mt={4} mb={0}>Email</FormLabel>
-                <Input type='email' onChange={(e) => setUser({...user, email:(e.target.value)})} placeholder="example@gmail.com"  />
+                <InputComponent type="email" placeholder="example@gmail.com" user={user} userKey={"email"} setUser={setUser} value={user.email} />
 
                 <Button my={4} colorScheme="blue" type='submit'> Submit </Button>
             </FormControl>
