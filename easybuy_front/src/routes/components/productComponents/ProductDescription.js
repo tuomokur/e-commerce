@@ -1,13 +1,17 @@
+import { useProductContext } from "../../../contexts/productContext.js"
+import useContext from "react";
 import { Center, Container } from "@chakra-ui/react"
 
 const ProductDescription = () => {
+  const product = useContext(useProductContext);
+
   return (
     <>
         <Container>
           <Center my={4}>
             {/* PLACEHOLDER TEXTS
             TODO: FETCH DESCRIPTION TEXTS */}
-            <h1> Item title here </h1>
+            <h1> Item title here {product.description}</h1>
           </Center>
             <p> 
                 Description text here
