@@ -7,9 +7,9 @@ import { useProductContext } from "../../contexts/productContext";
 import ProductInputComponent from "./ProductInputComponent";
 
 const emptyProduct = {
-  itemName: "",
-  itemDescription: "",
-  itemPrice: 0,
+  productName: "",
+  productDescription: "",
+  productPrice: 0,
   categoryName: "",
 };
 
@@ -57,7 +57,7 @@ const ProductFormComponent = () => {
 
         <ProductInputComponent
           type="text"
-          productKey="itemName"
+          productKey="productName"
           product={product}
           setProduct={setProduct}
         />
@@ -66,7 +66,7 @@ const ProductFormComponent = () => {
         </FormLabel>
         <ProductInputComponent
           type="text"
-          productKey="itemDescription"
+          productKey="productDescription"
           product={product}
           setProduct={setProduct}
         />
@@ -75,7 +75,7 @@ const ProductFormComponent = () => {
         </FormLabel>
         <ProductInputComponent
           type="number"
-          productKey="itemPrice"
+          productKey="productPrice"
           product={product}
           setProduct={setProduct}
         />

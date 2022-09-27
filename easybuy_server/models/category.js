@@ -7,7 +7,7 @@ const CategorySchema = new mongoose.Schema({
   pictures: {
     description: "Pictures for the Category",
     type: "array",
-    items: {
+    products: {
       description: "List of pictures",
       type: "string",
     },
