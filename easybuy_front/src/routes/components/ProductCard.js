@@ -28,7 +28,7 @@ const ProductCard = () => {
             <HStack spacing="10px">
                 {products.slice(-5).map(product => (
                     <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden' m={2} key={product._id}>
-                    <Image src="https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt={product.itemName} />
+                    <Image src="https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt={product.productName} />
                     <Box p='6'>
                     <Box display='flex' alignItems='baseline'>
                     <Badge borderRadius='full' px='2' colorScheme='teal'>
@@ -42,7 +42,7 @@ const ProductCard = () => {
                         textTransform='uppercase'
                         ml='2'
                     >
-                        {product.itemName}
+                        {product.productName}
                     </Box>
                     </Box>
         
@@ -53,11 +53,11 @@ const ProductCard = () => {
                         lineHeight='tight'
                         noOfLines={1}
                     >
-                        Price: {product.itemPrice} euro
+                        Price: {product.productPrice} euro
                     </Box>
         
                     <Box fontSize="sm">
-                        {product.itemDescription}
+                        {product.productDescription}
                     </Box>
                 </Box>
             </Box>

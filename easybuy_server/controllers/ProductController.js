@@ -1,4 +1,4 @@
-import CategoryModel from "../models/Category.js";
+import CategoryModel from "../models/category.js";
 import ProductModel from "../models/product.js";
 
 export const getProduct = async (req, res) => {
@@ -14,8 +14,8 @@ export const getAllProducts = async (req, res) => {
     if (search !== "") {
       // https://www.mongodb.com/docs/manual/reference/operator/query/regex/
       const allProducts = await ProductModel.find({
-        itemName: { $eq: search },
-        itemDescription: { $regex: `${search}`, $options: "i" },
+        productName: { $eq: search },
+        productDescription: { $regex: `${search}`, $options: "i" },
       });
       products = allProducts.slice(0, 20);
     } else {
@@ -32,9 +32,9 @@ export const addProduct = async (req, res) => {
   const dataToSave = req.body;
   if (
     !dataToSave ||
-    typeof dataToSave.itemName != "string" ||
-    typeof dataToSave.itemDescription != "string" ||
-    typeof dataToSave.itemPrice != "number" ||
+    typeof dataToSave.productName != "string" ||
+    typeof dataToSave.productDescription != "string" ||
+    typeof dataToSave.productPrice != "number" ||
     typeof dataToSave.categoryName != "string"
   ) {
     res.status(400).send({ message: "Data can not be empty!" });
@@ -45,9 +45,9 @@ export const addProduct = async (req, res) => {
       });
       if (category) {
         const productToBeSave = {
-          itemName: dataToSave.itemName,
-          itemDescription: dataToSave.itemDescription,
-          itemPrice: dataToSave.itemPrice,
+          productName: dataToSave.productName,
+          productDescription: dataToSave.productDescription,
+          productPrice: dataToSave.productPrice,
           categoryId: category._id,
           userId: req.user._id,
         };
