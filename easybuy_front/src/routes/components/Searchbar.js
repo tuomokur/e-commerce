@@ -43,7 +43,7 @@ const SearchBar = () => {
   const productsAvailable = searchedProducts.length > 0;
 
   return (
-    <Box m={2} p={4} w="100%">
+    <Box m={2} p={4} w="50%">
       <InputGroup size="md">
         <Input
           pr="4.5rem"
