@@ -5,13 +5,15 @@ import {
   getAllCategories,
   addCategory,
 } from "../controllers/CategoryController.js";
-import auth from "../passportMiddleware.js";
+import { jwtVerify } from "../middleware/middleware.js";
 
 dotenv.config();
 const router = express.Router();
 
+router.use("/", jwtVerify);
+
 router.get("/:id", getCategory);
 router.get("/", getAllCategories);
-router.post("/", auth, addCategory);
+router.post("/", addCategory);
 
 export default router;

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { FormLabel, FormControl, Button, Select } from "@chakra-ui/react";
 import { useProductContext } from "../../contexts/productContext";
 import ProductInputComponent from "./ProductInputComponent";
+import CategorySelect from "./category/CategorySelect";
 
 const emptyProduct = {
   productName: "",
@@ -14,7 +15,6 @@ const emptyProduct = {
 };
 
 const ProductFormComponent = () => {
-  const { categories } = useCategoryContext();
   const { addProduct } = useProductContext();
   const [product, setProduct] = useState(emptyProduct);
   const navigate = useNavigate();
@@ -31,8 +31,8 @@ const ProductFormComponent = () => {
     }
   };
 
-  const onCategorySelect = (e) => {
-    setProduct({ ...product, categoryName: e.target.value });
+  const onCategorySelect = (categoryName) => {
+    setProduct({ ...product, categoryName: categoryName });
   };
 
   return (
@@ -41,15 +41,7 @@ const ProductFormComponent = () => {
         <FormLabel mt={4} mb={0}>
           category{" "}
         </FormLabel>
-        <Select placeholder="Select Category" onChange={onCategorySelect}>
-          {categories.map((category, index) => {
-            return (
-              <option key={index} value={category.name}>
-                {category.name}
-              </option>
-            );
-          })}
-        </Select>
+        <CategorySelect onSelect={onCategorySelect} />
 
         <FormLabel mt={4} mb={0}>
           name
