@@ -7,17 +7,18 @@ import {
   updateProduct,
   deleteProduct,
 } from "../controllers/ProductController.js";
+import { jwtVerify } from "../middleware/middleware.js";
 
 dotenv.config();
 
-import auth from "../passportMiddleware.js";
-
 const router = express.Router();
+
+router.use("/", jwtVerify);
 
 router.get("/:id", getProduct);
 router.get("/", getAllProducts);
-router.post("/", auth, addProduct);
-router.put("/", auth, updateProduct);
+router.post("/", addProduct);
+router.put("/", updateProduct);
 router.delete("/:id", deleteProduct);
 
 export default router;

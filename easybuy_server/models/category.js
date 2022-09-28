@@ -14,5 +14,11 @@ const CategorySchema = new mongoose.Schema({
   },
 });
 //  first String is Name of the collection in database
-const CategoryModel = mongoose.model("category", CategorySchema);
+// https://stackoverflow.com/questions/14641834/how-to-get-rid-of-error-overwritemodelerror-cannot-overwrite-undefined-mode
+let CategoryModel;
+if (mongoose.models.categories) {
+  CategoryModel = mongoose.models.categories;
+} else {
+  CategoryModel = mongoose.model("categories", CategorySchema);
+}
 export default CategoryModel;
