@@ -1,24 +1,21 @@
+import { useProductContext } from "../../../contexts/productContext.js"
 import "./ProductInfoStyle.css";
 
 const ProductInfo = () => {
-
+  const product = useProductContext();
   return (
     <>
-        {/* PLACEHOLDER DATA
-        TODO: FETC PRODUCT PRICE AND SELLER INFO FROM DB */}
         <div className='infoBox'>
-        <p id='priceTag'> 500 € </p>
+        <p id='priceTag'>{product.productPrice}</p>
             <ul>
-              {/* <li id='priceTag'> 500 € </li> */}
-              <li> Title: Conputer</li>
-              <li> Type: Sell </li>
-              <li> Location: Keskusta </li>
+              <li>{product.productName}</li>
+              <li>{product.userId.postNumber}</li>
               <br/>
               <li> <b>Contact: </b> </li>
-              <li> Name: Linus Tuurvalds </li>
-              <li> Phone: 1232456 </li>
-              <li> eMail: programmer@hotmail.com </li>
-              <li> Address: No. </li>
+              <li> {product.userId.firstName} {product.userId.lastName}</li> {/* TODO: Solve how to do this */}     
+              <li> {product.userId.phone}</li>
+              <li> {product.userId.email}</li>
+              <li> {product.userId.streetAddress}</li>
             </ul>
         </div>         
     </>
