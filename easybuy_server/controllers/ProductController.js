@@ -7,15 +7,22 @@ export const getProduct = async (req, res) => {
 
 export const getAllProducts = async (req, res) => {
   const search = req.query.search || "";
-  console.log("search", search);
-
+  const category = req.query.category || "";
   try {
     let products = [];
+    let categoryId = "";
+    if (category !== "") {
+      const category = await CategoryModel.findOne({ name: category });
+      if (category) {
+        categoryId = category._id;
+      }
+    }
     if (search !== "") {
       // https://www.mongodb.com/docs/manual/reference/operator/query/regex/
       const allProducts = await ProductModel.find({
         productName: { $eq: search },
         productDescription: { $regex: `${search}`, $options: "i" },
+        categoryId: categoryId,
       });
       products = allProducts.slice(0, 20);
     } else {

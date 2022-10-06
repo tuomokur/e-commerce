@@ -4,6 +4,7 @@ import { Input, InputGroup, InputRightElement, Box } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { useProductContext } from "../../contexts/productContext";
 import { getProducts } from "../../contexts/productApiRequests";
+import CategorySelect from "./category/CategorySelect";
 
 function debounce(func, timeout = 300) {
   let timer;
@@ -19,13 +20,14 @@ const SearchBar = () => {
   const [isInvalid, setIsInvalid] = React.useState(false);
   const [search, setSearch] = useState("");
   const { searchedProducts, setSearchedProducts } = useProductContext();
+  const [categoryName, setCategoryName] = useState("");
 
   const onChange = async (e) => {
     const value = e.target.value;
     setSearch(value);
     const searchOnBackend = async () => {
       try {
-        const searchedProducts = await getProducts(value);
+        const searchedProducts = await getProducts(value, categoryName);
         setSearchedProducts(searchedProducts);
         setIsInvalid(false);
       } catch (error) {
@@ -40,10 +42,15 @@ const SearchBar = () => {
     await debounceSearchOnBackend();
   };
 
+  const onCategorySelect = (selectedCategoryName) => {
+    setCategoryName(selectedCategoryName);
+  };
+
   const productsAvailable = searchedProducts.length > 0;
 
   return (
     <Box m={2} p={4} w="50%">
+      <CategorySelect onSelect={onCategorySelect} />
       <InputGroup size="md">
         <Input
           pr="4.5rem"

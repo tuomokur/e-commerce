@@ -16,8 +16,10 @@ export const getProduct = async (id) => {
   return response.data;
 };
 
-export const getProducts = async (search) => {
-  const response = await axios.get(`${url}`, { params: { search: search } });
+export const getProducts = async (search, categoryName) => {
+  const response = await axios.get(`${url}`, {
+    params: { search: search, categoryName: categoryName },
+  });
   return response.data;
 };
 

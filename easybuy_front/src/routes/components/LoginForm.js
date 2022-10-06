@@ -1,7 +1,5 @@
 import React from "react";
-import { tryLogin } from "../../contexts/apiRequests.js";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import {
   FormControl,
   FormLabel,
@@ -9,12 +7,13 @@ import {
   InputGroup,
   InputRightElement,
   Button,
-  useDisclosure,
 } from "@chakra-ui/react";
+import { useAuthContext } from "../../contexts/authContext.js";
+
 const LoginForm = (props) => {
   const [show, setShow] = React.useState(false);
+  const { login } = useAuthContext();
 
-  const navigate = useNavigate();
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const handleClick = () => setShow(!show);
@@ -22,16 +21,14 @@ const LoginForm = (props) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await tryLogin(username, password);
+      await login(username, password);
       if (props.onClose) {
         props.onClose();
       }
-      navigate("/");
       console.log("Login succesful");
     } catch (e) {
       console.log(e);
       alert("Something went wrong, please try again");
-      navigate("/login");
     }
   };
   return (
