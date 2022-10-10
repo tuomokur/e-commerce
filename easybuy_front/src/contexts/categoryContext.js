@@ -1,16 +1,18 @@
 import { createContext, useState, useEffect, useContext } from "react";
+import { useAuthContext } from "./authContext.js";
 import { getCategories, addCategory } from "./categoryApiRequests.js";
 
 export const CategoryContext = createContext({});
 
 const CategoryProvider = (props) => {
+  const { token } = useAuthContext();
   const [categories, setcategories] = useState([]);
 
   useEffect(() => {
     const fetchcategories = async () => {
       if (categories.length === 0) {
         try {
-          const dbcategories = await getCategories();
+          const dbcategories = await getCategories(token);
           // check to avoid infinite looping
           if (dbcategories.length > 0) {
             setcategories(dbcategories);
@@ -21,11 +23,11 @@ const CategoryProvider = (props) => {
       }
     };
     fetchcategories();
-  }, [categories, setcategories]);
+  }, [categories, setcategories, token]);
 
   const doAddCategory = async (newCategory) => {
     try {
-      const res = await addCategory(newCategory);
+      const res = await addCategory(token, newCategory);
       const newcategories = [...categories, res.data];
       setcategories(newcategories);
     } catch (error) {
