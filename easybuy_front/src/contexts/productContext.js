@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { useAuthContext } from "./authContext";
 import {
   getProducts,
   addProduct,
@@ -9,16 +10,15 @@ import {
 export const ProductContext = createContext({});
 
 const ProductProvider = (props) => {
+  const { isLoggedIn, token } = useAuthContext();
   const [products, setProducts] = useState([]);
   const [searchedProducts, setSearchedProducts] = useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
-      console.log(products);
-      if (products.length === 0) {
+      if (isLoggedIn && products.length === 0) {
         try {
-          const dbproducts = await getProducts();
-
+          const dbproducts = await getProducts(token);
           // check to avoid infinite looping
           if (dbproducts.length > 0) {
             setProducts(dbproducts);
@@ -31,11 +31,11 @@ const ProductProvider = (props) => {
       }
     };
     fetchProducts();
-  }, [products, setProducts]);
+  }, [products, setProducts, isLoggedIn, token]);
 
   const doAddProduct = async (newProduct) => {
     try {
-      const res = await addProduct(newProduct);
+      const res = await addProduct(token, newProduct);
       const newproducts = [...products, res.data];
       setProducts(newproducts);
     } catch (error) {
@@ -45,7 +45,7 @@ const ProductProvider = (props) => {
 
   const editProduct = async (id, edittedProduct) => {
     try {
-      await updateProduct(id, edittedProduct);
+      await updateProduct(token, id, edittedProduct);
       // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex
       const index = products.findIndex((product) => {
         return product.id === id;
@@ -71,7 +71,7 @@ const ProductProvider = (props) => {
 
   const doDeleteProduct = async (id) => {
     try {
-      await deleteProduct(id);
+      await deleteProduct(token, id);
       const newproducts = products.filter((product) => {
         return product.id !== id;
       });
